@@ -1,28 +1,55 @@
 # Igloo Retrofit Quizzes
 
-Online teaching activities for four walls and one combined floor.
+**[Open the website](https://duncanig.github.io/igloo-retrofit-quizzes/)**
 
-**Website:** https://duncanig.github.io/igloo-retrofit-quizzes/
+Both quizzes run online on the venue PC. No installation, local server or local
+files are required. The editor can be closed during play.
 
-- Region quiz: [Play](region.html) · [Editor](region-editor.html) · [Desktop test](region.html?desktop=1)
-- Spot the Hazard: [Play](viewer.html) · [Editor](hazard-editor.html) · [Desktop test](viewer.html?desktop=1)
+## Move to the Right Region — whole original quiz
 
-## No local installation
+**[Open original quiz & editor](region.html)** · **[Clean ICE output](region.html?projection=1)**
 
-Open the website on an internet-connected venue PC. In ICE use a play URL, a 2:1 equirectangular WebView source (e.g. 4096×2048), and keep True Perspective applied. Do not use desktop-test mode or the old flat wall/floor atlas in ICE. The two lower projector outputs are one floor; ICE owns their calibration/blending. Use the region quiz's alignment screen and measured roomYaw/UI-band calibration before teaching. Input, floor/wall orientation, seams and readability need a real room check.
+This is the whole original [QuickFloorSessions region quiz](https://github.com/duncanig/QuickFloorSessions/blob/main/region-quiz-floor.html),
+not the simplified remake. Glacier, Forest, Desert and Reef, artwork, animations,
+recorded voices, music, effects, original game flow, editor, share links and
+download options are retained. Timer expiry or manual lock uses the original
+2.3-second answer-reveal sequence. Select **Edit** in its toolbar to author the
+quiz; its original share links carry the edits to another PC. No tracking needed.
 
-## Editing without a server
+**Only output dimensions/layout have changed:** native **15124 × 6134** source,
+wall widths **3974 / 3588 / 3974 / 3588**, all **2160** high. One **3588 × 3974**
+combined floor sits below wall 2, including both stacked lower outputs. See
+**[REGION-RETROFIT.md](REGION-RETROFIT.md)** for exact coordinates and ICE setup.
 
-Edit in your browser, click **Create shareable play link**, and copy the generated URL to ICE on the other PC. The fragment contains a compressed, validated snapshot of the questions, answers and settings; no files or local server needed. Existing links are immutable and do not change when you edit again. Browser drafts stay in that browser; saving a share link transfers the activity. These links include the answer key, so they are not suitable for private exams. GitHub Pages does not provide cloud publishing, live updates, accounts or image uploads; this edition uses the bundled construction image. Scene replacement needs a storage-backed host. Do not put personal learner information into activity links.
+**The region quiz is a native projector atlas, not equirectangular.** Use ICE
+mapping matching that atlas; do not apply the hazard quiz's equirectangular
+conversion to it. The website does not change ICE settings. The clean region
+output is `region.html?projection=1`; append the original `#r=` share fragment
+for an edited activity. Check calibration, input and readability in the room.
 
-## Teaching notes
+## Spot the Hazard — unchanged
 
-Region quiz: original eight sample questions, editable names/timer/content. Learners move physically; timer expiry or **Answer locked in** immediately highlights the correct wall and floor sector. Pause freezes time. Tutor group-confidence records are not automatic or individual scores. No tracking hardware required.
+**[Play](viewer.html)** · **[Editor](hazard-editor.html)** · **[Desktop test](viewer.html?desktop=1)**
 
-Hazard quiz: eight editable construction hazards, risk/response questions, feedback, scores and debrief. Supplied scene is AI-generated, not a verified seamless 360 photograph. Review safety content with a competent tutor; not certification.
+This remains the projection-aware construction lesson with its existing
+questions, feedback, scoring and debrief. In ICE use a **2:1 equirectangular**
+source (e.g. 4096×2048), with its existing True Perspective mapping. Desktop-test
+mode is not the ICE source. The supplied scene is AI-generated, not a verified
+seamless 360 photograph. Tutor review is needed; this is not certification.
 
-Region adaptation: https://github.com/duncanig/QuickFloorSessions/blob/main/region-quiz-floor.html . Simplified projected graphics; original embedded recorded narration/animations are not included. Three.js and font licence notices are included.
+The hazard editor's **Create shareable play link** creates an immutable URL
+snapshot containing the content and answer key. Copy that URL to the venue PC.
+Browser drafts are not cloud publications; older links do not change. GitHub
+Pages has no server-side publishing or image-upload storage, so this edition
+uses the bundled scene. Do not include personal information in activity links.
 
-## Repository layout
+## Source and maintenance
 
-Root HTML files are standalone production bundles (no npm needed to run). The image is under images/. Unbundled source and rebuild instructions are in source.zip. GitHub Pages serves main at the repository root. No local publications, browser progress, Windows executable or credentials are included.
+The original region source is preserved unchanged in `region-original.html`
+inside **source.zip**, with a separate dimension-only adapter. Root region.html
+is that original plus the adapter; the earlier simplified region modules are
+not used for this published page. The hazard HTML remains its existing built
+bundle. Source/rebuild instructions are in **source.zip** and
+**[PAGES-REBUILD.md](PAGES-REBUILD.md)**. Three.js and font licence notices are
+included. No local publications, learner progress, executables or credentials
+are uploaded. GitHub Pages serves the main branch at the repository root.

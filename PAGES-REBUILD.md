@@ -5,6 +5,14 @@ files are required on the venue PC. `source.zip` contains the unbundled template
 for future development; this document describes rebuilding it, not running it
 in the venue.
 
+Region quiz exception: the whole original application is preserved in
+`region-original.html`. `scripts/original-region.mjs` verifies its source hash
+and injects only the retrofit layout adapter. `npm run package:pages` replaces
+the earlier simplified region bundle with this whole original application.
+To update only the region output/menu/docs in an existing web-release folder,
+run `node scripts/package-original-region.mjs` instead. Hazard bundles are then
+untouched. See REGION-RETROFIT.md for native atlas dimensions/mapping.
+
 Using Node.js on a development machine, extract source.zip and enter
 `templates/360-hosted/` inside it:
 
