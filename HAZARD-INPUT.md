@@ -1,8 +1,11 @@
 # Hazard Hunt — ICE input check
 
-The hazard lesson is still a 2:1 equirectangular source. Keep its True Perspective
-effect applied; do not switch to the region quiz's native atlas or use desktop
-preview mode to compensate for incorrectly forwarded coordinates.
+The hazard lesson encodes equirectangular longitude/latitude in normalised UVs.
+**The WebView itself does not have to be 2:1** when ICE maps the full texture by
+normalised UVs. Leave its space-locked resolution as configured. A conventional
+equirectangular image is 2:1, but that does not make a non-2:1 browser viewport
+the proven cause of distortion. Keep True Perspective applied; do not switch to
+the region quiz's native atlas mapping or use desktop preview to compensate.
 
 Open `viewer.html?inputDebug=1` in ICE (add `&inputDebug=1` before the hash if
 using an edited activity link). It appends an input readout to the same spherical
@@ -16,6 +19,15 @@ Click the visible **Start inspection** once and check:
   settings and source focus, rather than changing the quiz's answer regions.
 - **Image READY**: if not, the scene has not loaded. The Start button is disabled
   until it loads. Check network access to the image on GitHub Pages.
+- **Render / actual / DPR / GPU limits**: the page's internal render buffer is
+  now independent of the CSS/WebView size. ICE output uses no extra Windows-DPI
+  multiplier and the internal long edge is capped at 4096 (or a smaller GPU
+  limit), preserving the WebView's aspect. For 10032×4066 this is 4096×1660; it
+  still covers the whole WebView, not a centred/letterboxed 2:1 sub-rectangle.
+  The readout reports both requested and actual WebGL buffer dimensions and GPU
+  viewport/renderbuffer/texture limits. A requested/actual mismatch or different
+  limits between laptop and venue helps identify driver/allocation differences.
+  This is a safeguard, not confirmation that the GPU caused the room warping.
 - **Result / source coordinates / pink ring**: the ring shows where the received
   event lands in the equirectangular source and is transformed with the picture.
   If it is visibly elsewhere than the physical click, ICE isn't returning the
@@ -43,3 +55,8 @@ Without `inputDebug=1` the diagnostic footer and pink ring are absent. No remote
 input logs, screenshots, learner data or telemetry are collected or uploaded.
 Browser tests cover the event streams and projection math; actual ICE forwarding
 and True Perspective inversion still need an on-site test.
+
+For machine comparisons use the **same quiz, same selected hazard and same
+effect settings/viewpoint**. Different tangent-panel headings can look different
+when flattened into the room's output atlas. A screenshot of that atlas alone
+does not establish whether the panel appears rectangular on the physical wall.

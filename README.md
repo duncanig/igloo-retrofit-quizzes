@@ -32,8 +32,13 @@ for an edited activity. Check calibration, input and readability in the room.
 **[Play](viewer.html)** · **[Editor](hazard-editor.html)** · **[Desktop test](viewer.html?desktop=1)**
 
 This remains the projection-aware construction lesson with its existing
-questions, feedback, scoring and debrief. In ICE use a **2:1 equirectangular**
-source (e.g. 4096×2048), with its existing True Perspective mapping. Desktop-test
+questions, feedback, scoring and debrief. Keep its existing equirectangular /
+True Perspective mapping. **ICE's locked WebView resolution does not have to be
+2:1**: the shader and picking use the full frame's normalised UVs. Conventional
+panoramas are 2:1, but changing the browser aspect is not a requirement or a
+proven fix for warping. Internal GPU allocation is capped independently of the
+WebView's CSS/input size. Use **[the input/GPU check](viewer.html?inputDebug=1)**
+and **[HAZARD-INPUT.md](HAZARD-INPUT.md)** to compare machines. Desktop-test
 mode is not the ICE source. The supplied scene is AI-generated, not a verified
 seamless 360 photograph. Tutor review is needed; this is not certification.
 
